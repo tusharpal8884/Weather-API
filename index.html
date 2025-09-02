@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkyCast • Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://api.open-meteo.com">
+    <link rel="preconnect" href="https://geocoding-api.open-meteo.com">
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body class="bg-gray-950 text-white min-h-screen">
+    <header class="app-header sticky top-0 z-10 bg-gradient-to-b from-slate-900/90 to-slate-900/60 border-b border-gray-800 p-4 flex gap-4 items-center justify-between">
+        <div class="brand flex items-center gap-2">
+            <span class="logo text-2xl">☀️</span>
+            <h1 class="text-xl font-semibold tracking-wide m-0">SkyCast</h1>
+        </div>
+
+        <form id="search-form" class="search relative flex gap-2 items-center">
+            <input id="search-input" type="text" placeholder="Search city (e.g., Delhi, London)" autocomplete="off"
+                   class="w-full sm:min-w-60 md:min-w-[520px] max-w-sm p-3 rounded-xl border border-gray-800 bg-gray-900 text-white outline-none focus:ring-4 focus:ring-blue-500 focus:border-blue-500 transition duration-200" />
+            <button type="submit" title="Search"
+                    class="p-3 rounded-lg border border-gray-700 bg-gray-800 text-white cursor-pointer hover:bg-gray-700 active:scale-95 transition duration-200">
+                Search
+            </button>
+            <button type="button" id="geo-btn" title="Use my location"
+                    class="p-3 rounded-lg border border-gray-700 bg-gray-800 text-white cursor-pointer hover:bg-gray-700 active:scale-95 transition duration-200 text-lg leading-none">
+                📍
+            </button>
+            <div id="suggestions" class="suggestions absolute top-12 left-0 right-0 bg-gray-900 border border-gray-800 rounded-xl overflow-hidden shadow-2xl z-20 hidden"></div>
+        </form>
+    </header>
+
+    <main class="container max-w-5xl mx-auto my-6 px-4">
+        <section id="status" class="status min-h-5 text-blue-300 my-2 text-sm"></section>
+
+        <section class="current grid grid-cols-1 md:grid-cols-1.3fr-0.7fr gap-4" id="current"></section>
+
+        <section class="panels grid grid-cols-1 lg:grid-cols-2 gap-4 my-4">
+            <div class="panel bg-gradient-to-b from-gray-900/90 to-gray-900/70 border border-gray-800 rounded-2xl p-4">
+                <h2 class="text-lg font-bold">Next 24 hours</h2>
+                <div id="hourly" class="hourly scroller flex gap-2 overflow-x-auto py-2"></div>
+            </div>
+            <div class="panel bg-gradient-to-b from-gray-900/90 to-gray-900/70 border border-gray-800 rounded-2xl p-4">
+                <h2 class="text-lg font-bold">7‑day forecast</h2>
+                <div id="daily" class="daily-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 overflow-x-auto"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer text-muted text-center py-8">
+        <p class="text-sm text-gray-400">Data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">Open‑Meteo</a> • Built for GitHub Pages</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
